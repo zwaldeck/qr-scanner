@@ -1,0 +1,16 @@
+<ion-list>
+  <ion-item *ngIf="url && url !== ''">
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-title class="details-title">URL</ion-title>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-text class="details-text"><a href="{{url}}" target="_blank">{{url}}</a></ion-text>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-item>
+</ion-list>

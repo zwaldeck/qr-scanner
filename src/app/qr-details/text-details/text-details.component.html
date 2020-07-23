@@ -1,0 +1,14 @@
+<ion-item *ngIf="text && text !== ''">
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-title class="details-title">Text</ion-title>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-text class="details-text"><span class="details-text-with-line-breaks" [innerHTML]="text"></span></ion-text>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-item>

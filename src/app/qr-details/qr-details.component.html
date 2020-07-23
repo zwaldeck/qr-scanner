@@ -1,0 +1,39 @@
+<ion-header [translucent]="true">
+    <ion-toolbar color="primary">
+        <ion-buttons slot="start">
+            <ion-back-button defaultHref="/tabs/scanner"></ion-back-button>
+        </ion-buttons>
+        <!--    <ion-buttons slot="secondary">-->
+        <!--      <ion-button (click)="showSortByActionSheet()">-->
+        <!--        <ion-icon slot="icon-only" name="filter-outline"></ion-icon>-->
+        <!--      </ion-button>-->
+        <!--    </ion-buttons>-->
+        <ion-title class="ion-text-center"><span *ngIf="qr">{{qr.actionType}}</span></ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+    <ng-container *ngIf="qr">
+        <ng-container [ngSwitch]="qr.actionType">
+            <app-contact-details *ngSwitchCase="ActionType.CONTACT" [qr]="qr"></app-contact-details>
+            <app-mail-details *ngSwitchCase="ActionType.EMAIL" [qr]="qr"></app-mail-details>
+            <app-sms-details *ngSwitchCase="ActionType.SMS" [qr]="qr"></app-sms-details>
+            <app-event-details *ngSwitchCase="ActionType.EVENT" [qr]="qr"></app-event-details>
+            <app-phone-details *ngSwitchCase="ActionType.PHONE" [qr]="qr"></app-phone-details>
+            <app-text-details *ngSwitchCase="ActionType.TEXT" [qr]="qr"></app-text-details>
+            <app-wifi-details *ngSwitchCase="ActionType.WIFI" [qr]="qr"></app-wifi-details>
+            <app-url-details *ngSwitchCase="ActionType.URL" [qr]="qr"></app-url-details>
+        </ng-container>
+    </ng-container>
+</ion-content>
+
+<ion-footer>
+    <ion-toolbar>
+        <ion-button expand="block"
+                    *ngIf="qr && qr.actionType !== ActionType.TEXT"
+                    (click)="preformAction(qr)">
+            <ion-icon icon="{{getIcon(qr)}}" slot="start"></ion-icon>
+            {{getButtonText(qr.actionType)}}
+        </ion-button>
+    </ion-toolbar>
+</ion-footer>

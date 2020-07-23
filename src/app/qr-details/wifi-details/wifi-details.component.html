@@ -1,0 +1,46 @@
+<ion-list>
+  <ion-item *ngIf="wifi.ssid && wifi.ssid !== ''">
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-title class="details-title">SSID</ion-title>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-text class="details-text">{{wifi.ssid}}</ion-text>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-item>
+
+  <ion-item *ngIf="wifi.type && wifi.type !== ''">
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-title class="details-title">Security type</ion-title>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-text class="details-text">{{wifi.type}}</ion-text>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-item>
+
+  <ion-item *ngIf="wifi.password && wifi.password !== ''">
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-title class="details-title">Password</ion-title>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-text class="details-text">{{wifi.password}}</ion-text>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-item>
+</ion-list>

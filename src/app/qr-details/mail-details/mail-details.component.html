@@ -1,0 +1,76 @@
+<ion-list *ngIf="qr">
+  <ion-item *ngIf="mail.to && mail.to.length > 0">
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-title class="details-title">To</ion-title>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-text class="details-text" [innerHTML]="mailsAsLink(mail.to)"></ion-text>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-item>
+
+  <ion-item *ngIf="mail.cc && mail.cc.length > 0">
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-title class="details-title">CC</ion-title>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-text class="details-text" [innerHTML]="mailsAsLink(mail.cc)"></ion-text>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-item>
+
+  <ion-item *ngIf="mail.bcc && mail.bcc.length > 0">
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-title class="details-title">BCC</ion-title>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-text class="details-text" [innerHTML]="mailsAsLink(mail.bcc)"></ion-text>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-item>
+
+  <ion-item *ngIf="mail.subject && mail.subject !== ''">
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-title class="details-title">Subject</ion-title>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-text class="details-text">{{mail.subject}}</ion-text>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-item>
+
+  <ion-item *ngIf="mail.body && mail.body !== ''">
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-title class="details-title">Body</ion-title>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-text class="details-text"><span class="details-text-with-line-breaks" [innerHTML]="mail.body"></span></ion-text>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-item>
+</ion-list>

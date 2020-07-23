@@ -1,0 +1,16 @@
+<ion-list *ngIf="qr">
+  <ion-item *ngIf="phone && phone !== ''">
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-title class="details-title">Phone number</ion-title>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-text class="details-text" [innerHTML]="phoneNumberAsLink(phone)"></ion-text>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-item>
+</ion-list>

@@ -1,0 +1,77 @@
+<ion-list>
+    <ion-item *ngIf="event.summary && event.summary !== ''">
+        <ion-grid>
+            <ion-row>
+                <ion-col>
+                    <ion-title class="details-title">Summary</ion-title>
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col>
+                    <ion-text class="details-text">{{event.summary}}</ion-text>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </ion-item>
+
+    <ion-item *ngIf="event.description && event.description !== ''">
+        <ion-grid>
+            <ion-row>
+                <ion-col>
+                    <ion-title class="details-title">Description</ion-title>
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col>
+                    <ion-text class="details-text"><span class="details-text-with-line-breaks"
+                                                         [innerHTML]="event.description"></span></ion-text>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </ion-item>
+
+    <ion-item *ngIf="event.location && event.location !== ''">
+        <ion-grid>
+            <ion-row>
+                <ion-col>
+                    <ion-title class="details-title">Location</ion-title>
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col>
+                    <ion-text class="details-text">{{event.location}}</ion-text>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </ion-item>
+
+    <ion-item *ngIf="event.start">
+        <ion-grid>
+            <ion-row>
+                <ion-col>
+                    <ion-title class="details-title">Start</ion-title>
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col>
+                    <ion-text class="details-text">{{event.start | date: 'dd/MM/yyyy'}}</ion-text>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </ion-item>
+
+    <ion-item *ngIf="event.end">
+        <ion-grid>
+            <ion-row>
+                <ion-col>
+                    <ion-title class="details-title">End</ion-title>
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col>
+                    <ion-text class="details-text">{{event.end | date: 'dd/MM/yyyy'}}</ion-text>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </ion-item>
+</ion-list>

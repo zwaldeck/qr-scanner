@@ -1,0 +1,36 @@
+<ion-header [translucent]="true">
+    <ion-toolbar color="primary">
+        <ion-buttons slot="start">
+            <ion-button *ngIf="torchCompatible">
+                <ion-icon slot="icon-only" name="flash-outline" (click)="torchEnabled = !torchEnabled"></ion-icon>
+                <!--        <ion-icon slot="icon-only" name="flash-off-outline"></ion-icon>-->
+            </ion-button>
+        </ion-buttons>
+        <ion-buttons slot="secondary">
+            <ion-button>
+                <ion-icon slot="icon-only" name="images-outline"></ion-icon>
+            </ion-button>
+            <ion-button *ngIf="availableCameras && availableCameras.length > 1" (click)="switchCamera()">
+                <ion-icon slot="icon-only" name="camera-reverse-outline"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+        <ion-title class="ion-text-center">Scan QR Code</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+    <div style="width: 100%; height: 100%">
+        <zxing-scanner
+                style="height: 100%; width: 100%"
+                #scanner
+                [device]="currentDevice"
+                [torch]="torchEnabled"
+                previewFitMode="fill"
+                (scanSuccess)="onCodeResult($event)"
+                (permissionResponse)="onHasPermission($event)"
+                (camerasFound)="onCamerasFound($event)"
+                (torchCompatible)="onIsTorchCompatible($event)"
+        ></zxing-scanner>
+        <div class="hole"></div>
+    </div>
+</ion-content>

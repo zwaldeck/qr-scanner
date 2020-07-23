@@ -1,0 +1,28 @@
+<ion-header [translucent]="true">
+    <ion-toolbar color="primary">
+        <ion-buttons slot="secondary">
+            <ion-button (click)="showSortByActionSheet()">
+                <ion-icon slot="icon-only" name="filter-outline"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+        <ion-title class="ion-text-center">History</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+    <ng-container *ngIf="history">
+        <ion-card *ngFor="let entry of history | keyvalue:keepOrder">
+            <ion-card-header class="ion-text-center">
+                <ion-card-title><strong>{{entry.key}}</strong></ion-card-title>
+            </ion-card-header>
+            <ion-item [routerLink]="['/details', qr.id]" class="ion-activated" *ngFor="let qr of entry.value">
+                <ion-icon icon="{{getIcon(qr)}}" slot="start"></ion-icon>
+                <ion-label>
+                    <span>{{getEssentialData(qr)}}</span>
+                    <br/>
+                    <span class="text-muted">23:04 14/07/2020</span>
+                </ion-label>
+            </ion-item>
+        </ion-card>
+    </ng-container>
+</ion-content>
