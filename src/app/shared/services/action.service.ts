@@ -73,10 +73,12 @@ export class ActionService {
                 this.downloadFile(qr.data, 'event.ics', 'text/calendar');
                 break;
             case DataType.PHONE:
-            case DataType.URL:
             case DataType.SMS:
             case DataType.MAILTO:
                 window.location.href = qr.data;
+                break;
+            case DataType.URL:
+                window.open(qr.data, '_blank');
                 break;
         }
     }

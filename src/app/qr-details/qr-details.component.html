@@ -30,7 +30,7 @@
 <ion-footer>
     <ion-toolbar>
         <ion-button expand="block"
-                    *ngIf="qr && qr.actionType !== ActionType.TEXT"
+                    *ngIf="qr && qr.actionType !== ActionType.TEXT && qr.actionType !== ActionType.WIFI"
                     (click)="preformAction(qr)">
             <ion-icon icon="{{getIcon(qr)}}" slot="start"></ion-icon>
             {{getButtonText(qr.actionType)}}
