@@ -7,7 +7,7 @@
     "ng": "ng",
     "start": "ionic serve --lab",
     "build": "ng build",
-    "build:prod": "ionic build --prod && npx cap copy",
+    "build:prod": "node_modules/@ionic/cli/bin/ionic build --prod",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
@@ -43,6 +43,7 @@
     "@angular/language-service": "~9.1.6",
     "@capacitor/cli": "2.2.1",
     "@ionic/angular-toolkit": "^2.1.1",
+    "@ionic/cli": "^6.10.1",
     "@ionic/lab": "^3.1.7",
     "@types/jasmine": "~3.5.0",
     "@types/jasminewd2": "~2.0.3",
