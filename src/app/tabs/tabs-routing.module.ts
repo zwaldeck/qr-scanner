@@ -23,6 +23,10 @@ const routes: Routes = [
         path: 'create-qr',
         loadChildren: () => import('../create/create.module').then(m => m.CreateComponentModule)
       },
+      {
+        path: 'saved',
+        loadChildren: () => import('../saved/saved.module').then(m => m.SavedComponentModule)
+      },
       {path: 'details/:id', loadChildren: () => import('../qr-details/qr-details.module').then(m => m.QrDetailsModule)},
       {
         path: '',

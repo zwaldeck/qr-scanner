@@ -18,14 +18,14 @@ export class FavoritesComponent extends BaseComponent {
   }
 
   ionViewWillEnter(): void {
-    this.loadHistory(QrHistoryGroupType.GROUP_BY_DATE);
+    this.loadFavorites(QrHistoryGroupType.GROUP_BY_DATE);
   }
 
   ionViewDidLeave() {
     this.ngOnDestroy();
   }
 
-  loadHistory(groupType: QrHistoryGroupType): void {
+  loadFavorites(groupType: QrHistoryGroupType): void {
     this.qrService.loadFavorites(groupType)
         .pipe(
             takeUntil(this.ngUnsubscribe),

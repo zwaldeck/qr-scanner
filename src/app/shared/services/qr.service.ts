@@ -38,6 +38,14 @@ export class QrService {
             );
     }
 
+    public loadSaved(groupType: QrHistoryGroupType = QrHistoryGroupType.GROUP_BY_DATE): Observable<Map<string, QR[]>> {
+        return from(this.dbService.getAll<QR>(QR_DB_STORE))
+            .pipe(
+                map(codes => codes.filter(code => code.type === QrType.CREATED)),
+                map(codes => this.groupCodesHistory(groupType, codes))
+            );
+    }
+
     public getEssentialData(qr: QR): string {
         switch (qr.dataType) {
             case DataType.VCARD:
