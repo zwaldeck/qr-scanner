@@ -11,6 +11,10 @@ export abstract class AbstractVDataParser<T> {
     }
 
     protected static findByType(searchArray: any[], types: string[], asString: boolean = false): any | string {
+        if (!searchArray) {
+            return null;
+        }
+
         types = types.map(type => type.toUpperCase());
         const obj = searchArray.find(item => item.valueInfo.type.toUpperCase().split(',')
             .some(type => types.includes(type.toUpperCase())));

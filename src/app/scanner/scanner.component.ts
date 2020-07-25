@@ -53,7 +53,7 @@ export class ScannerComponent implements OnInit {
                 tap(index => console.log('saved', index))
             )
             .subscribe(
-                (index: number) => this.router.navigateByUrl(`/details/${index}`)
+                (index: number) => this.router.navigateByUrl(`/tabs/details/${index}`)
                 // TODO: Error handling
             );
     }
