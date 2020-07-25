@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {BaseComponent} from '../base.component';
-import {ActivatedRoute, Params, Router} from '@angular/router';
+import {ActivatedRoute, NavigationEnd, Params, Router, RoutesRecognized} from '@angular/router';
 import {QrService} from '../shared/services/qr.service';
-import {mergeMap, take, takeUntil, tap} from 'rxjs/operators';
+import {filter, mergeMap, pairwise, take, takeUntil, tap} from 'rxjs/operators';
 import {QR} from '../shared/model/qr';
 import {ActionType} from '../shared/model/action-type.enum';
 import {ActionService} from '../shared/services/action.service';
@@ -24,6 +24,8 @@ export class QrDetailsComponent extends BaseComponent implements OnInit {
     qr: QR;
     id: number;
 
+    private prevUrl: string;
+
     constructor(private activatedRoute: ActivatedRoute,
                 private router: Router,
                 private qrService: QrService,
@@ -41,6 +43,22 @@ export class QrDetailsComponent extends BaseComponent implements OnInit {
             takeUntil(this.ngUnsubscribe),
             // tap(qr => console.log(qr))
         ).subscribe((qr: QR) => this.qr = qr);
+
+        this.router.events
+            .pipe(
+                filter((e: any) => e instanceof RoutesRecognized),
+                pairwise()
+            ).subscribe((e: any) => {
+            if (e.length === 0) {
+                this.prevUrl = '/tabs/scanner';
+            } else {
+                this.prevUrl = e[0].urlAfterRedirects;
+            }
+        });
+    }
+
+    goBack() {
+        this.router.navigateByUrl(this.prevUrl);
     }
 
     getButtonText(actionType: ActionType): string {
@@ -83,7 +101,7 @@ export class QrDetailsComponent extends BaseComponent implements OnInit {
     showQRCode() {
         this.modalController.create({
             component: ShowQRCodeModalComponent,
-            componentProps: { qr: this.qr, id: this.id }
+            componentProps: {qr: this.qr, id: this.id}
         }).then(modal => modal.present());
     }
 

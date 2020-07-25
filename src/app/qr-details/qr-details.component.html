@@ -1,10 +1,10 @@
 <ion-header [translucent]="true">
     <ion-toolbar color="primary">
         <ion-buttons slot="start">
-            <ion-back-button defaultHref="/tabs/scanner"></ion-back-button>
+            <ion-button (click)="goBack()"><ion-icon name="arrow-back-sharp"></ion-icon></ion-button>
         </ion-buttons>
         <ion-buttons slot="secondary" *ngIf="qr">
-            <ion-button (click)="toggleFavorite(qr)">
+            <ion-button (click)="toggleFavorite()">
                 <ion-icon slot="icon-only" [name]="qr.favorite ? 'star' : 'star-outline'"></ion-icon>
             </ion-button>
         </ion-buttons>
