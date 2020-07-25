@@ -1,40 +1,37 @@
 import {Component, OnInit} from '@angular/core';
 import {BaseComponent} from '../base.component';
-import {ActivatedRoute, NavigationEnd, Params, Router, RoutesRecognized} from '@angular/router';
+import {ActivatedRoute, Params, Router} from '@angular/router';
 import {QrService} from '../shared/services/qr.service';
-import {filter, mergeMap, pairwise, take, takeUntil, tap} from 'rxjs/operators';
+import {mergeMap, take, takeUntil} from 'rxjs/operators';
 import {QR} from '../shared/model/qr';
 import {ActionType} from '../shared/model/action-type.enum';
 import {ActionService} from '../shared/services/action.service';
-import {SafeUrl} from '@angular/platform-browser';
-import {DataType} from '../shared/model/data.type';
-import {FileSaverService} from 'ngx-filesaver';
 import {ModalController} from '@ionic/angular';
 import {ShowQRCodeModalComponent} from '../shared/components/show-qrcode-modal/show-qrcode-modal.component';
+import {AbstractHistoryAwareComponent} from '../shared/components/abstract-history-aware-component';
 
 @Component({
     selector: 'app-qr-details',
     templateUrl: './qr-details.component.html',
     styleUrls: ['./qr-details.component.scss'],
 })
-export class QrDetailsComponent extends BaseComponent implements OnInit {
+export class QrDetailsComponent extends AbstractHistoryAwareComponent implements OnInit {
 
     public readonly ActionType = ActionType;
 
     qr: QR;
     id: number;
 
-    private prevUrl: string;
-
     constructor(private activatedRoute: ActivatedRoute,
-                private router: Router,
+                router: Router,
                 private qrService: QrService,
                 private actionService: ActionService,
                 private modalController: ModalController) {
-        super();
+        super(router);
     }
 
     ngOnInit() {
+        super.ngOnInit();
         this.activatedRoute.params.pipe(
             mergeMap((params: Params) => {
                 this.id = +params.id;
@@ -43,22 +40,6 @@ export class QrDetailsComponent extends BaseComponent implements OnInit {
             takeUntil(this.ngUnsubscribe),
             // tap(qr => console.log(qr))
         ).subscribe((qr: QR) => this.qr = qr);
-
-        this.router.events
-            .pipe(
-                filter((e: any) => e instanceof RoutesRecognized),
-                pairwise()
-            ).subscribe((e: any) => {
-            if (e.length === 0) {
-                this.prevUrl = '/tabs/scanner';
-            } else {
-                this.prevUrl = e[0].urlAfterRedirects;
-            }
-        });
-    }
-
-    goBack() {
-        this.router.navigateByUrl(this.prevUrl);
     }
 
     getButtonText(actionType: ActionType): string {

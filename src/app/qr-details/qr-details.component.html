@@ -1,11 +1,16 @@
 <ion-header [translucent]="true">
     <ion-toolbar color="primary">
         <ion-buttons slot="start">
-            <ion-button (click)="goBack()"><ion-icon name="arrow-back-sharp"></ion-icon></ion-button>
+            <ion-button (click)="goBack()">
+                <ion-icon name="arrow-back-sharp"></ion-icon>
+            </ion-button>
         </ion-buttons>
         <ion-buttons slot="secondary" *ngIf="qr">
             <ion-button (click)="toggleFavorite()">
                 <ion-icon slot="icon-only" [name]="qr.favorite ? 'star' : 'star-outline'"></ion-icon>
+            </ion-button>
+            <ion-button href="/tabs/about">
+                <ion-icon slot="icon-only" name="help-circle-outline"></ion-icon>
             </ion-button>
         </ion-buttons>
         <ion-title class="ion-text-center"><span *ngIf="qr">{{qr.actionType}}</span></ion-title>
@@ -40,7 +45,8 @@
                 </ion-col>
                 <ion-col>
                     <ion-button expand="block" color="tertiary" (click)="showQRCode()">
-                        <ion-icon icon="qr-code-sharp" slot="start"></ion-icon>Show QR
+                        <ion-icon icon="qr-code-sharp" slot="start"></ion-icon>
+                        Show QR
                     </ion-button>
                 </ion-col>
             </ion-row>

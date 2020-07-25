@@ -1,7 +1,12 @@
 <ion-header [translucent]="true">
   <ion-toolbar color="primary">
     <ion-buttons slot="secondary">
-      <app-qr-list-sort-button (sortTypeChanged)="loadHistory($event)"></app-qr-list-sort-button>
+      <app-qr-list-sort-button (sortTypeChanged)="loadFavorites($event)"></app-qr-list-sort-button>
+    </ion-buttons>
+    <ion-buttons slot="secondary">
+      <ion-button href="/tabs/about">
+        <ion-icon slot="icon-only" name="help-circle-outline"></ion-icon>
+      </ion-button>
     </ion-buttons>
     <ion-title class="ion-text-center">Favorites</ion-title>
   </ion-toolbar>

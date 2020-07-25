@@ -28,6 +28,7 @@ const routes: Routes = [
         loadChildren: () => import('../saved/saved.module').then(m => m.SavedComponentModule)
       },
       {path: 'details/:id', loadChildren: () => import('../qr-details/qr-details.module').then(m => m.QrDetailsModule)},
+      {path: 'about', loadChildren: () => import('../about/about.module').then(m => m.AboutComponentModule)},
       {
         path: '',
         redirectTo: '/tabs/scanner',
