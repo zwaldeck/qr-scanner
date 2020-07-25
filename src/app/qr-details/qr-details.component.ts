@@ -9,6 +9,8 @@ import {ActionService} from '../shared/services/action.service';
 import {SafeUrl} from '@angular/platform-browser';
 import {DataType} from '../shared/model/data.type';
 import {FileSaverService} from 'ngx-filesaver';
+import {ModalController} from '@ionic/angular';
+import {ShowQRCodeModalComponent} from '../shared/components/show-qrcode-modal/show-qrcode-modal.component';
 
 @Component({
     selector: 'app-qr-details',
@@ -20,18 +22,22 @@ export class QrDetailsComponent extends BaseComponent implements OnInit {
     public readonly ActionType = ActionType;
 
     qr: QR;
+    id: number;
 
     constructor(private activatedRoute: ActivatedRoute,
                 private router: Router,
                 private qrService: QrService,
                 private actionService: ActionService,
-                private fileSaverService: FileSaverService) {
+                private modalController: ModalController) {
         super();
     }
 
     ngOnInit() {
         this.activatedRoute.params.pipe(
-            mergeMap((params: Params) => this.qrService.getQrById(params.id)),
+            mergeMap((params: Params) => {
+                this.id = +params.id;
+                return this.qrService.getQrById(params.id);
+            }),
             takeUntil(this.ngUnsubscribe),
             // tap(qr => console.log(qr))
         ).subscribe((qr: QR) => this.qr = qr);
@@ -72,6 +78,13 @@ export class QrDetailsComponent extends BaseComponent implements OnInit {
         this.qrService.updateQR(this.qr)
             .pipe(take(1))
             .subscribe();
+    }
+
+    showQRCode() {
+        this.modalController.create({
+            component: ShowQRCodeModalComponent,
+            componentProps: { qr: this.qr, id: this.id }
+        }).then(modal => modal.present());
     }
 
 }

@@ -1,0 +1,20 @@
+<ion-header translucent>
+    <ion-toolbar>
+        <ion-title>QR Code</ion-title>
+        <ion-buttons slot="end">
+            <ion-button (click)="dismiss()">Close</ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+    <div class="vertical-center">
+        <div class="ion-text-center">
+            <qrcode *ngIf="qr"
+                    [qrdata]="qr.data"
+                    [width]="width - 40"
+                    [errorCorrectionLevel]="'M'"
+                    [elementType]="'svg'"></qrcode>
+        </div>
+    </div>
+</ion-content>
