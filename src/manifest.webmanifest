@@ -1,6 +1,6 @@
 {
-  "name": "app",
-  "short_name": "app",
+  "name": "Add free PWA QR Scanner & Generator",
+  "short_name": "PWA QR Scanner",
   "theme_color": "#1976d2",
   "background_color": "#fafafa",
   "display": "standalone",

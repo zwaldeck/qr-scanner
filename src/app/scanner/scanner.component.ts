@@ -30,7 +30,7 @@ export class ScannerComponent implements OnInit {
         if (!hasPermissions) {
             this.alertController.create({
                 header: 'No permission',
-                message: 'To use this application you need to give permission to use the camera. Please use this link to see how to do this for your browser: (TODO: The link)',
+                message: 'To use this application you need to give permission to use the camera.',
                 buttons: ['Ok']
             }).then(alert => alert.present());
         }
