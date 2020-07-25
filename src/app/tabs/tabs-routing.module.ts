@@ -19,6 +19,10 @@ const routes: Routes = [
         path: 'favorites',
         loadChildren: () => import('../favorites/favorites.module').then(m => m.FavoritesModule)
       },
+      {
+        path: 'create-qr',
+        loadChildren: () => import('../create/create.module').then(m => m.CreateComponentModule)
+      },
       {path: 'details/:id', loadChildren: () => import('../qr-details/qr-details.module').then(m => m.QrDetailsModule)},
       {
         path: '',

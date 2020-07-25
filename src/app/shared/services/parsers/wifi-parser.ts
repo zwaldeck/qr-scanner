@@ -1,5 +1,4 @@
 import {QrDataParser} from './qr-data-parser';
-import {Contact} from '../../model/qr-data/contact';
 import {Wifi} from '../../model/qr-data/wifi';
 
 export class WifiParser implements QrDataParser<Wifi> {

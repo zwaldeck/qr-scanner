@@ -1,0 +1,11 @@
+<div [formGroup]="form" (ngSubmit)="submitForm()">
+  <ion-item>
+    <ion-label position="stacked">To (comma separated)</ion-label>
+    <ion-input type="text" formControlName="numbers"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="stacked">Message</ion-label>
+    <ion-textarea formControlName="message"></ion-textarea>
+  </ion-item>
+</div>

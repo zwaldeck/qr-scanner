@@ -1,0 +1,26 @@
+<div [formGroup]="form" (ngSubmit)="submitForm()">
+  <ion-item>
+    <ion-label position="stacked">Summary</ion-label>
+    <ion-input type="text" formControlName="summary"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="stacked">Description</ion-label>
+    <ion-textarea formControlName="description"></ion-textarea>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="stacked">Location</ion-label>
+    <ion-input type="text" formControlName="location"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="stacked">Start</ion-label>
+    <ion-datetime display-format="YYYY-MM-DD HH:mm" formControlName="start"></ion-datetime>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="stacked">End</ion-label>
+    <ion-datetime display-format="YYYY-MM-DD HH:mm" formControlName="end"></ion-datetime>
+  </ion-item>
+</div>

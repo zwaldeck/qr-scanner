@@ -1,0 +1,10 @@
+    <ion-card class="ripple cursor-pointer" *ngFor="let type of types" (click)="select(type)">
+        <ion-ripple-effect></ion-ripple-effect>
+        <ion-card-header class="ion-text-left">
+            <ion-card-title>
+                <ion-icon [name]="getIcon(type)"></ion-icon>
+                <span class="ml-1">{{type}}</span>
+                <ion-icon name="chevron-forward-outline" style="float: right"></ion-icon>
+            </ion-card-title>
+        </ion-card-header>
+    </ion-card>

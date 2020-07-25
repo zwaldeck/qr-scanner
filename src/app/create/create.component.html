@@ -1,0 +1,31 @@
+<ion-header [translucent]="true">
+    <ion-toolbar color="primary">
+        <ion-buttons slot="start">
+            <ion-button *ngIf="currentStep > 1" (click)="currentStep = currentStep - 1">
+                <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+        <ion-buttons slot="secondary">
+            <!--      <ion-button (click)="toggleFavorite(qr)">-->
+            <!--        <ion-icon slot="icon-only" name="star"></ion-icon>-->
+            <!--      </ion-button>-->
+        </ion-buttons>
+        <ion-title class="ion-text-center">Create QR</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+
+<ion-content [fullscreen]="true">
+    <ng-container [ngSwitch]="currentStep">
+        <app-create-step1 *ngSwitchCase="1" (stepComplete)="step1Complete($event)"></app-create-step1>
+        <app-create-step2 *ngSwitchCase="2"
+                          [type]="selectedType"
+                          (stepComplete)="step2Complete($event)"></app-create-step2>
+        <app-create-step3 *ngSwitchCase="3" [qr]="currentQR"></app-create-step3>
+    </ng-container>
+</ion-content>
+
+<ion-footer>
+    <ion-button *ngIf="currentStep == 2" expand="block" (click)="submitForm()">Create QR</ion-button>
+    <ion-button *ngIf="currentStep == 3" expand="block" (click)="saveQR()">Save QR</ion-button>
+</ion-footer>

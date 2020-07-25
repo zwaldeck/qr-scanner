@@ -1,0 +1,10 @@
+<ng-container [ngSwitch]="type">
+    <app-contact-form *ngSwitchCase="ActionType.CONTACT" (result)="stepComplete.emit($event)"></app-contact-form>
+    <app-event-form *ngSwitchCase="ActionType.EVENT" (result)="stepComplete.emit($event)"></app-event-form>
+    <app-mail-form *ngSwitchCase="ActionType.EMAIL" (result)="stepComplete.emit($event)"></app-mail-form>
+    <app-phone-form *ngSwitchCase="ActionType.PHONE" (result)="stepComplete.emit($event)"></app-phone-form>
+    <app-sms-form *ngSwitchCase="ActionType.SMS" (result)="stepComplete.emit($event)"></app-sms-form>
+    <app-text-form *ngSwitchCase="ActionType.TEXT" (result)="stepComplete.emit($event)"></app-text-form>
+    <app-url-form *ngSwitchCase="ActionType.URL" (result)="stepComplete.emit($event)"></app-url-form>
+    <app-wifi-form *ngSwitchCase="ActionType.WIFI" (result)="stepComplete.emit($event)"></app-wifi-form>
+</ng-container>

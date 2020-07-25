@@ -3,7 +3,7 @@ import {NgxIndexedDBService} from 'ngx-indexed-db';
 import {from, Observable} from 'rxjs';
 import {QR} from '../model/qr';
 import {QR_DB_STORE} from '../utils/constants';
-import {map, tap} from 'rxjs/operators';
+import {map} from 'rxjs/operators';
 import {QrType} from '../model/qr-type.enum';
 import {QrDataParserRegistry} from '../utils/qr-data-parser-registry';
 import {DataType} from '../model/data.type';
@@ -12,6 +12,7 @@ import {Mail} from '../model/qr-data/mail';
 import {Sms} from '../model/qr-data/sms';
 import {VEvent} from '../model/qr-data/vevent';
 import {Wifi} from '../model/qr-data/wifi';
+import {ActionType} from '../model/action-type.enum';
 
 @Injectable({
     providedIn: 'root'
@@ -67,24 +68,26 @@ export class QrService {
     }
 
     public getIcon(qr: QR): string {
-        switch (qr.dataType) {
-            case DataType.VCARD:
-            case DataType.MECARD:
+        return this.getIconFromActionType(qr.actionType);
+    }
+
+    public getIconFromActionType(type: ActionType): string {
+        switch (type) {
+            case ActionType.CONTACT:
                 return 'person-outline';
-            case DataType.MAILTO:
-            case DataType.MATMSG:
+            case ActionType.EMAIL:
                 return 'mail-open-outline';
-            case DataType.SMS:
+            case ActionType.SMS:
                 return 'chatbubble-ellipses-outline';
-            case DataType.VEVENT:
+            case ActionType.EVENT:
                 return 'calendar-outline';
-            case DataType.PHONE:
+            case ActionType.PHONE:
                 return 'call-outline';
-            case DataType.WIFI:
+            case ActionType.WIFI:
                 return 'wifi-outline';
-            case DataType.URL:
+            case ActionType.URL:
                 return 'earth-outline';
-            case DataType.TEXT:
+            case ActionType.TEXT:
             default:
                 return 'document-text-outline';
         }
@@ -96,6 +99,11 @@ export class QrService {
 
     public updateQR(qr: QR): Observable<boolean> {
         return from(this.dbService.update<QR>(QR_DB_STORE, qr))
+            .pipe(map(() => true));
+    }
+
+    public saveQR(qr: QR): Observable<boolean> {
+        return from(this.dbService.add<QR>(QR_DB_STORE, qr))
             .pipe(map(() => true));
     }
 

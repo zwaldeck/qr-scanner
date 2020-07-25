@@ -1,0 +1,19 @@
+<div [formGroup]="form" (ngSubmit)="submitForm()">
+  <ion-item>
+    <ion-label position="stacked">SSID</ion-label>
+    <ion-input type="text" formControlName="ssid"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="stacked">Type</ion-label>
+    <ion-select formControlName="ssid">
+      <ion-select-option value="WPA">WPA</ion-select-option>
+      <ion-select-option value="WEP">WEP</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="stacked">Password</ion-label>
+    <ion-input type="text" formControlName="password"></ion-input>
+  </ion-item>
+</div>

@@ -1,0 +1,9 @@
+<div class="vertical-center">
+    <div class="ion-text-center">
+        <qrcode *ngIf="qr"
+                [qrdata]="qr.data"
+                [width]="width - 40"
+                [errorCorrectionLevel]="'M'"
+                [elementType]="'svg'"></qrcode>
+    </div>
+</div>
