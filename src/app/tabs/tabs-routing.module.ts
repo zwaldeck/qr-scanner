@@ -16,9 +16,10 @@ const routes: Routes = [
         loadChildren: () => import('../history/history.module').then(m => m.HistoryModule)
       },
       {
-        path: 'tab3',
-        loadChildren: () => import('../tab3/tab3.module').then(m => m.Tab3PageModule)
+        path: 'favorites',
+        loadChildren: () => import('../favorites/favorites.module').then(m => m.FavoritesModule)
       },
+      {path: 'details/:id', loadChildren: () => import('../qr-details/qr-details.module').then(m => m.QrDetailsModule)},
       {
         path: '',
         redirectTo: '/tabs/scanner',

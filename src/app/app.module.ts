@@ -23,13 +23,17 @@ export function migrationFactory() {
         4: (db, transaction) => {
             const store = transaction.objectStore('codes');
             store.createIndex('dataType', 'dataType', { unique: false });
+        },
+        5: (db, transaction) => {
+            const store = transaction.objectStore('codes');
+            store.createIndex('favorite', 'favorite', { unique: false });
         }
     };
 }
 
 const dbConfig: DBConfig = {
     name: 'QrScanner',
-    version: 4,
+    version: 5,
     objectStoresMeta: [{
         store: 'codes',
         storeConfig: {keyPath: 'id', autoIncrement: true},
@@ -39,6 +43,7 @@ const dbConfig: DBConfig = {
             {name: 'dataType', keypath: 'dataType', options: {unique: false}},
             {name: 'data', keypath: 'data', options: {unique: false}},
             {name: 'createdAt', keypath: 'createdAt', options: {unique: false}},
+            {name: 'favorite', keypath: 'favorite', options: {unique: false}},
         ]
     }],
     migrationFactory

@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {BaseComponent} from '../base.component';
 import {ActivatedRoute, Params, Router} from '@angular/router';
 import {QrService} from '../shared/services/qr.service';
-import {mergeMap, takeUntil, tap} from 'rxjs/operators';
+import {mergeMap, take, takeUntil, tap} from 'rxjs/operators';
 import {QR} from '../shared/model/qr';
 import {ActionType} from '../shared/model/action-type.enum';
 import {ActionService} from '../shared/services/action.service';
@@ -33,7 +33,7 @@ export class QrDetailsComponent extends BaseComponent implements OnInit {
         this.activatedRoute.params.pipe(
             mergeMap((params: Params) => this.qrService.getQrById(params.id)),
             takeUntil(this.ngUnsubscribe),
-            tap(qr => console.log(qr))
+            // tap(qr => console.log(qr))
         ).subscribe((qr: QR) => this.qr = qr);
     }
 
@@ -65,6 +65,13 @@ export class QrDetailsComponent extends BaseComponent implements OnInit {
 
     preformAction(qr: QR) {
         this.actionService.handleAction(qr);
+    }
+
+    toggleFavorite(): void {
+        this.qr.favorite = !this.qr.favorite;
+        this.qrService.updateQR(this.qr)
+            .pipe(take(1))
+            .subscribe();
     }
 
 }

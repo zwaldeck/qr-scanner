@@ -8,6 +8,7 @@ export class QR {
                 public readonly actionType: ActionType,
                 public readonly dataType: DataType,
                 public readonly data: string,
-                public readonly createdAt: Date = new Date()) {
+                public readonly createdAt: Date = new Date(),
+                public favorite: boolean = false) {
     }
 }

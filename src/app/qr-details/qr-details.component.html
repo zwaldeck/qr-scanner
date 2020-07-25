@@ -3,11 +3,11 @@
         <ion-buttons slot="start">
             <ion-back-button defaultHref="/tabs/scanner"></ion-back-button>
         </ion-buttons>
-        <!--    <ion-buttons slot="secondary">-->
-        <!--      <ion-button (click)="showSortByActionSheet()">-->
-        <!--        <ion-icon slot="icon-only" name="filter-outline"></ion-icon>-->
-        <!--      </ion-button>-->
-        <!--    </ion-buttons>-->
+        <ion-buttons slot="secondary" *ngIf="qr">
+            <ion-button (click)="toggleFavorite(qr)">
+                <ion-icon slot="icon-only" [name]="qr.favorite ? 'star' : 'star-outline'"></ion-icon>
+            </ion-button>
+        </ion-buttons>
         <ion-title class="ion-text-center"><span *ngIf="qr">{{qr.actionType}}</span></ion-title>
     </ion-toolbar>
 </ion-header>

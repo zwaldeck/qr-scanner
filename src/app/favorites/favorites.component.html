@@ -1,0 +1,14 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-buttons slot="secondary">
+      <app-qr-list-sort-button (sortTypeChanged)="loadHistory($event)"></app-qr-list-sort-button>
+    </ion-buttons>
+    <ion-title class="ion-text-center">Favorites</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ng-container *ngIf="favorites">
+    <app-qr-list [codes]="favorites"></app-qr-list>
+  </ng-container>
+</ion-content>

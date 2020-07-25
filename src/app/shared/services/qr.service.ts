@@ -3,7 +3,7 @@ import {NgxIndexedDBService} from 'ngx-indexed-db';
 import {from, Observable} from 'rxjs';
 import {QR} from '../model/qr';
 import {QR_DB_STORE} from '../utils/constants';
-import {map} from 'rxjs/operators';
+import {map, tap} from 'rxjs/operators';
 import {QrType} from '../model/qr-type.enum';
 import {QrDataParserRegistry} from '../utils/qr-data-parser-registry';
 import {DataType} from '../model/data.type';
@@ -25,6 +25,14 @@ export class QrService {
         return from(this.dbService.getAll<QR>(QR_DB_STORE))
             .pipe(
                 map(codes => codes.filter(code => code.type === QrType.SCANNED)),
+                map(codes => this.groupCodesHistory(groupType, codes))
+            );
+    }
+
+    public loadFavorites(groupType: QrHistoryGroupType = QrHistoryGroupType.GROUP_BY_DATE): Observable<Map<string, QR[]>> {
+        return from(this.dbService.getAll<QR>(QR_DB_STORE))
+            .pipe(
+                map(codes => codes.filter(code => code.favorite)),
                 map(codes => this.groupCodesHistory(groupType, codes))
             );
     }
@@ -84,6 +92,11 @@ export class QrService {
 
     public getQrById(id: number): Observable<QR> {
         return from(this.dbService.getByID<QR>(QR_DB_STORE, +id));
+    }
+
+    public updateQR(qr: QR): Observable<boolean> {
+        return from(this.dbService.update<QR>(QR_DB_STORE, qr))
+            .pipe(map(() => true));
     }
 
     public getData(qr: QR): Contact|Mail|Sms|VEvent|string|Wifi {
