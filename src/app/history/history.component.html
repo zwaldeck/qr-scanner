@@ -14,6 +14,6 @@
 
 <ion-content [fullscreen]="true">
     <ng-container *ngIf="history">
-        <app-qr-list [codes]="history"></app-qr-list>
+        <app-qr-list [codes]="history" [showDelete]="true" (deleteQr)="deleteQr($event)"></app-qr-list>
     </ng-container>
 </ion-content>

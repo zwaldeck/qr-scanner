@@ -2,12 +2,13 @@
   <ion-card-header class="ion-text-center">
     <ion-card-title><strong>{{entry.key}}</strong></ion-card-title>
   </ion-card-header>
-  <ion-item [routerLink]="['/tabs/details', qr.id]" class="ion-activated" *ngFor="let qr of entry.value">
+  <ion-item (click)="navigateToDetail(qr.id)" class="ion-activated" *ngFor="let qr of entry.value">
     <ion-icon icon="{{getIcon(qr)}}" slot="start"></ion-icon>
     <ion-label>
       <span>{{getEssentialData(qr)}}</span>
       <br/>
-      <span class="text-muted">23:04 14/07/2020</span>
+      <span class="text-muted">{{qr.createdAt | date:'dd-MM-yyyy HH:mm'}}</span>
     </ion-label>
+    <ion-icon *ngIf="showDelete" click-stop-propagation (click)="askForDeletion(qr)" icon="trash" style="float: right"></ion-icon>
   </ion-item>
 </ion-card>

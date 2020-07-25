@@ -7,12 +7,14 @@ import {RouterModule} from '@angular/router';
 import {QrListSortButtonComponent} from './components/qr-list-sort-button/qr-list-sort-button.component';
 import {ShowQRCodeModalComponent} from './components/show-qrcode-modal/show-qrcode-modal.component';
 import {QRCodeModule} from 'angularx-qrcode';
+import { ClickStopPropagationDirective } from './directives/click-stop-propagation.directive';
 
 @NgModule({
     declarations: [
         QrListComponent,
         QrListSortButtonComponent,
-        ShowQRCodeModalComponent
+        ShowQRCodeModalComponent,
+        ClickStopPropagationDirective
     ],
     imports: [
         CommonModule,
@@ -25,7 +27,8 @@ import {QRCodeModule} from 'angularx-qrcode';
         FileSaverModule,
         QrListComponent,
         QrListSortButtonComponent,
-        ShowQRCodeModalComponent
+        ShowQRCodeModalComponent,
+        ClickStopPropagationDirective
     ]
 })
 export class SharedModule {

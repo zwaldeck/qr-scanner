@@ -14,6 +14,6 @@
 
 <ion-content [fullscreen]="true">
   <ng-container *ngIf="favorites">
-    <app-qr-list [codes]="favorites"></app-qr-list>
+    <app-qr-list [codes]="favorites" [showDelete]="true" (deleteQr)="deleteQr($event)"></app-qr-list>
   </ng-container>
 </ion-content>

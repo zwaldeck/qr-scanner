@@ -3,7 +3,7 @@ import {QrHistoryGroupType, QrService} from '../shared/services/qr.service';
 import {BaseComponent} from '../base.component';
 import {takeUntil, tap} from 'rxjs/operators';
 import {QR} from '../shared/model/qr';
-import {ActionSheetController} from '@ionic/angular';
+import {ActionSheetController, ToastController} from '@ionic/angular';
 
 @Component({
     selector: 'app-history',
@@ -14,7 +14,8 @@ export class HistoryComponent extends BaseComponent {
 
     history: Map<string, QR[]>;
 
-    constructor(private qrService: QrService) {
+    constructor(private qrService: QrService,
+                private toastController: ToastController) {
         super();
     }
 
@@ -32,5 +33,14 @@ export class HistoryComponent extends BaseComponent {
                 takeUntil(this.ngUnsubscribe),
                 // tap(res => console.log(res))
             ).subscribe(res => this.history = res);
+    }
+
+    deleteQr(id: number): void {
+        this.qrService.deleteQR(id)
+            .pipe(takeUntil(this.ngUnsubscribe))
+            .subscribe(() => this.toastController.create({
+                message: 'QR Code deleted!',
+                duration: 2000
+            }).then(toast => toast.present()));
     }
 }

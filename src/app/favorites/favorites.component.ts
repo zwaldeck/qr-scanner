@@ -3,6 +3,7 @@ import {QR} from '../shared/model/qr';
 import {QrHistoryGroupType, QrService} from '../shared/services/qr.service';
 import {takeUntil, tap} from 'rxjs/operators';
 import {BaseComponent} from '../base.component';
+import {ToastController} from '@ionic/angular';
 
 @Component({
   selector: 'app-favorites',
@@ -13,7 +14,8 @@ export class FavoritesComponent extends BaseComponent {
 
   favorites: Map<string, QR[]>;
 
-  constructor(private qrService: QrService) {
+  constructor(private qrService: QrService,
+              private toastController: ToastController) {
     super();
   }
 
@@ -30,6 +32,15 @@ export class FavoritesComponent extends BaseComponent {
         .pipe(
             takeUntil(this.ngUnsubscribe),
         ).subscribe(res => this.favorites = res);
+  }
+
+  deleteQr(id: number): void {
+    this.qrService.deleteQR(id)
+        .pipe(takeUntil(this.ngUnsubscribe))
+        .subscribe(() => this.toastController.create({
+          message: 'QR Code deleted!',
+          duration: 2000
+        }).then(toast => toast.present()));
   }
 
 }

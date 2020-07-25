@@ -115,6 +115,11 @@ export class QrService {
             .pipe(map(() => true));
     }
 
+    public deleteQR(id: number): Observable<boolean> {
+        return from(this.dbService.delete(QR_DB_STORE, id))
+            .pipe(map(() => true));
+    }
+
     public getData(qr: QR): Contact|Mail|Sms|VEvent|string|Wifi {
         switch (qr.dataType) {
             case DataType.VCARD:
