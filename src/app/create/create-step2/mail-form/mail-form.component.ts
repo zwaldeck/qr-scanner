@@ -42,9 +42,9 @@ export class MailFormComponent extends BaseComponent implements OnInit {
   public submitForm(): void {
     const mail = new Mail();
 
-    mail.to = this.form.value.to ? this.form.value.to.split[','] : [];
-    mail.cc = this.form.value.cc ? this.form.value.cc.split[','] : [];
-    mail.bcc = this.form.value.bcc ? this.form.value.bcc.split[','] : [];
+    mail.to = this.form.value.to ? this.form.value.to.split(',') : [];
+    mail.cc = this.form.value.cc ? this.form.value.cc.split(',') : [];
+    mail.bcc = this.form.value.bcc ? this.form.value.bcc.split(',') : [];
     mail.subject = this.form.value.subject || '';
     mail.body = this.form.value.body || '';
 

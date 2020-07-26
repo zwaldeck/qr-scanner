@@ -1,7 +1,7 @@
 <div [formGroup]="form" (ngSubmit)="submitForm()">
   <ion-item>
     <ion-label position="stacked">Summary</ion-label>
-    <ion-input type="text" formControlName="summary"></ion-input>
+    <ion-input type="text" [required]="true" formControlName="summary"></ion-input>
   </ion-item>
 
   <ion-item>
