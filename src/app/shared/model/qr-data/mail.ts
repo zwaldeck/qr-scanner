@@ -19,11 +19,11 @@ export class Mail {
         }
 
         if (this.subject && this.subject !== '') {
-            url = `subject=${encodeURIComponent(this.subject)}&`;
+            url += `subject=${encodeURIComponent(this.subject)}&`;
         }
 
         if (this.body && this.body !== '') {
-            url = `body=${encodeURIComponent(this.body)}&`;
+            url += `body=${encodeURIComponent(this.body)}&`;
         }
 
         return url.slice(0, -1);
